@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+<div>
+    <H2>Tasks</H2>
+</div>
+<div class="outer_container">
+    <div class="container">
+        <div class="add_task">
+            <form action="/task" method="post" th:object="${task}">
+                <label>Title
+                    <!-- th:field уже автоматически проставит name, не обязательно указывать name вручную -->
+                    <input type="text" th:field="*{title}">
+                </label>
+
+                <label>Description
+                    <textarea th:field="*{description}"></textarea>
+                </label>
+
+                <label>Status
+                    <select th:field="*{status}">
+                        <option value="" disabled selected>-- Choose --</option>
+                        <option th:each="stat : ${statuses}" th:value="${stat}" th:text="${stat}"></option>
+                    </select>
+                </label>
+                <label>Project
+                    <select th:field="*{project}">
+                        <option value="" selected>No Project</option>
+                        <option th:each="proj : ${projects}" th:value="${proj.id}" th:text="${proj.title}"></option>
+                    </select>
+                </label>
+                <label>Deadline
+                    <input type="date" th:field="*{deadline}">
+                </label>
+
+                <button type="submit">Create Project</button>
+            </form>
+        </div>
+        <div class="todo_tasks">
+            <H2>TO DO</H2>
+            <div th:each="task : ${tasks}" class="task-container">
+                <div class="todo" th:if="${task.status.name() == 'TO_DO'}">
+                    <h3 th:text="${task.title}"></h3>
+                    <span th:if="${task.project != null}" th:text="${task.project.title}"></span>
+                    <p th:text="${task.description}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="doing_tasks">
+            <H2>IN PROGRESS</H2>
+            <div th:each="task : ${tasks}" class="task-container">
+                <div class="doing_container" th:if="${task.status.name() == 'IN_PROGRESS'}">
+                    <h3 th:text="${task.title}"></h3>
+                    <span th:if="${task.project != null}" th:text="${task.project.title}"></span>
+                    <p th:text="${task.description}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="pending_tasks">
+            <h2>PENDING</h2>
+            <div th:each="task : ${tasks}" class="task-container">
+                <div class="pending_container" th:if="${task.status.name() == 'PENDING'}">
+                    <h3 th:text="${task.title}"></h3>
+                    <span th:if="${task.project != null}" th:text="${task.project.title}"></span>
+                    <p th:text="${task.description}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="done_tasks">
+            <h2>Done</h2>
+            <div th:each="task : ${tasks}" class="task-container">
+                <div class="done_container" th:if="${task.status.name() == 'DONE'}">
+                    <h3 th:text="${task.title}"></h3>
+                    <span th:if="${task.project != null}" th:text="${task.project.name}"></span>
+                    <p th:text="${task.description}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

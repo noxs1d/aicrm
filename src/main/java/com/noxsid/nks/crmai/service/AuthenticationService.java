@@ -3,6 +3,7 @@ package com.noxsid.nks.crmai.service;
 import com.noxsid.nks.crmai.auth.AuthenticationRequest;
 import com.noxsid.nks.crmai.auth.AuthenticationResponse;
 import com.noxsid.nks.crmai.auth.RegisterRequest;
+import com.noxsid.nks.crmai.data.Position;
 import com.noxsid.nks.crmai.data.Role;
 import com.noxsid.nks.crmai.data.Token;
 import com.noxsid.nks.crmai.data.User;
@@ -43,6 +44,7 @@ public class AuthenticationService {
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(Role.USER);
+        user.setPosition(Position.JUNIOR);
         user = userRepository.save(user);
     }
 

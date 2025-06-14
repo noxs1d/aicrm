@@ -60,6 +60,7 @@ public class SecurityConfig{
                     log.addLogoutHandler(customLogoutHandler);
                     log.logoutSuccessHandler((request, response, authentication) ->
                             SecurityContextHolder.clearContext());
+                    log.deleteCookies("access_token");
                 });
         return http.build();
     }

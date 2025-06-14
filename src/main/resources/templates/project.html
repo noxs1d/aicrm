@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+</head>
+<body>
+<div>
+    <h2>Projects</h2>
+</div>
+
+<!-- Правильное условие с th:if -->
+<div th:if="${position == 'MANAGER' or position == 'CEO'}">
+    <!-- Указание th:object требует ${} -->
+    <form action="/project" th:object="${project}" method="post">
+        <label>Title
+            <!-- th:field уже автоматически проставит name, не обязательно указывать name вручную -->
+            <input type="text" th:field="*{title}">
+        </label>
+
+        <label>Description
+            <textarea th:field="*{description}"></textarea>
+        </label>
+
+        <label>Status
+            <select th:field="*{status}">
+                <option value="" disabled selected>-- Choose --</option>
+                <option th:each="stat : ${statuses}" th:value="${stat}" th:text="${stat}"></option>
+            </select>
+        </label>
+
+        <label>Deadline
+            <input type="date" th:field="*{deadline}">
+        </label>
+
+        <button type="submit">Create Project</button>
+    </form>
+</div>
+
+<div class="outer">
+    <div th:each="project : ${projects}" class="project-container">
+        <h3 th:text="${project.title}"></h3>
+        <p th:text="${project.description}"></p>
+        <span th:text="${project.status}"></span>
+<!--        <span th:if="${project.deadline != null}"-->
+<!--              th:text="${#dates.format(project.deadline, 'yyyy-MM-dd')}"></span>-->
+<!--        <span th:if="${project.deadline == null}">No deadline</span>-->
+    </div>
+</div>
+</body>
+</html>
