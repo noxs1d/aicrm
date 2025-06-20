@@ -28,6 +28,9 @@ public class UserService implements UserDetailsService{
                 .orElseThrow(() ->  new UsernameNotFoundException("Пользователь с именем " + username + " не найден"));
     }
 
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username).orElseThrow();
+    }
     public boolean existsByUsername(String username) {
         User user = userRepository.findByUsername(username).orElse(null);
         if (user != null) {

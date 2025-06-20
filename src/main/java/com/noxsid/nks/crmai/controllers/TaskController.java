@@ -28,6 +28,7 @@ public class TaskController {
     @GetMapping
     public String getTaskPage(Model model, HttpServletRequest request){
 
+        model.addAttribute("activeMenu", "tasks");
         model.addAttribute("task", new Task());
         model.addAttribute("statuses", Status.values());
         model.addAttribute("projects", projectService.getAllProjects());

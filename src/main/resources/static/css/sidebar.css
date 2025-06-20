@@ -1,0 +1,233 @@
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #e8e8e8;
+    border-right: 1px solid #d0d0d0;
+    padding: 20px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.sidebar .logo {
+    padding: 0 20px 30px 20px;
+    border-bottom: 1px solid #d0d0d0;
+    margin-bottom: 20px;
+}
+
+.sidebar .logo h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.sidebar .nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .nav-item {
+    margin: 0;
+}
+
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #d8d8d8;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.sidebar .nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Icon styles using CSS shapes and borders */
+.sidebar .icon-dashboard {
+    border: 2px solid currentColor;
+    border-radius: 2px;
+    position: relative;
+}
+
+.sidebar .icon-dashboard::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 6px;
+    height: 6px;
+    border: 1px solid currentColor;
+    border-radius: 1px;
+}
+
+.sidebar .icon-dashboard::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 6px;
+    height: 6px;
+    border: 1px solid currentColor;
+    border-radius: 1px;
+}
+
+.sidebar .icon-projects {
+    border: 2px solid currentColor;
+    border-radius: 2px;
+    position: relative;
+}
+
+.sidebar .icon-projects::before {
+    content: '📋';
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    font-size: 10px;
+}
+
+.sidebar .icon-tasks {
+    border: 2px solid currentColor;
+    border-radius: 2px;
+    position: relative;
+}
+
+.sidebar .icon-tasks::before {
+    content: '✓';
+    position: absolute;
+    top: -4px;
+    left: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sidebar .icon-clients {
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    position: relative;
+}
+
+.sidebar .icon-clients::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 6px;
+    width: 6px;
+    height: 6px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+}
+
+.sidebar .icon-clients::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 4px;
+    width: 10px;
+    height: 6px;
+    border: 1px solid currentColor;
+    border-radius: 0 0 10px 10px;
+    border-top: none;
+}
+
+.sidebar .icon-ai {
+    border: 2px solid currentColor;
+    border-radius: 2px;
+    position: relative;
+    background: currentColor;
+}
+
+.sidebar .icon-ai::before {
+    content: 'AI';
+    position: absolute;
+    top: -1px;
+    left: 1px;
+    font-size: 8px;
+    font-weight: bold;
+    color: #e8e8e8;
+}
+
+.sidebar .icon-settings {
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    position: relative;
+}
+
+.sidebar .icon-settings::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 6px;
+    height: 6px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+}
+
+/* Main content offset */
+.main-content-with-sidebar {
+    margin-left: 250px;
+    padding: 20px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 250px; /* Same as sidebar width */
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+        overflow: hidden;
+    }
+
+    .sidebar .logo h1 {
+        font-size: 16px;
+    }
+
+    .sidebar .nav-link span:not(.nav-icon) {
+        display: none;
+    }
+
+    .sidebar .nav-icon {
+        margin-right: 0;
+    }
+
+    .main-content {
+        margin-left: 70px;
+    }
+}

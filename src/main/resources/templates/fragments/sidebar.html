@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Dashboard</title>
+</head>
+<body>
+<!-- Sidebar Fragment -->
+<aside class="sidebar" th:fragment="sidebar">
+    <div class="logo">
+        <h1>AICRM</h1>
+    </div>
+
+    <nav>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a class="nav-link"
+                   th:href="@{/}"
+                   th:classappend="${activeMenu == 'dashboard' ? 'active' : ''}">
+                    <span class="nav-icon icon-dashboard"></span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   th:href="@{/project}"
+                   th:classappend="${activeMenu == 'projects' ? 'active' : ''}">
+                    <span class="nav-icon icon-projects"></span>
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   th:href="@{/task}"
+                   th:classappend="${activeMenu == 'tasks' ? 'active' : ''}">
+                    <span class="nav-icon icon-tasks"></span>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   th:href="@{/client}"
+                   th:classappend="${activeMenu == 'clients' ? 'active' : ''}">
+                    <span class="nav-icon icon-clients"></span>
+                    <span>Clients</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   th:href="@{/ai}"
+                   th:classappend="${activeMenu == 'ai-assistant' ? 'active' : ''}">
+                    <span class="nav-icon icon-ai"></span>
+                    <span>AI assistant</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   th:href="@{/settings}"
+                   th:classappend="${activeMenu == 'settings' ? 'active' : ''}">
+                    <span class="nav-icon icon-settings"></span>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+</body>
+</html>

@@ -2,9 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
     <title>Projects</title>
 </head>
 <body>
+
+<!-- Include the sidebar fragment -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
 <div>
     <h2>Projects</h2>
 </div>

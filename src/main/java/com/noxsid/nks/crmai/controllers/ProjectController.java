@@ -26,6 +26,8 @@ public class ProjectController {
     private final JwtService jwtService;
     @GetMapping
     public String getProjectPage(Model model, HttpServletRequest req){
+
+        model.addAttribute("activeMenu", "project");
         Cookie[] cookies = req.getCookies();
         String token = null;
         for(Cookie cookie : cookies){

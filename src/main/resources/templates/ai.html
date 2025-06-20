@@ -2,9 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
     <title>Chat with AI</title>
 </head>
 <body>
+
+<!-- Include the sidebar fragment -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
 <form action="/ai" method="post">
     <textarea name="text" id="text"></textarea>
     <input type="submit" value="send">

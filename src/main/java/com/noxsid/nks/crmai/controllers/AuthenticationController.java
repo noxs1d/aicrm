@@ -68,10 +68,11 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh_token")
-    public ResponseEntity<AuthenticationResponse> refreshToken(
+    public String refreshToken(
             HttpServletRequest request,
             HttpServletResponse response) {
 
-        return service.refreshToken(request,response);
+         AuthenticationResponse authenticationResponse = service.refreshToken(request,response);
+        return "redirect:/";
     }
 }

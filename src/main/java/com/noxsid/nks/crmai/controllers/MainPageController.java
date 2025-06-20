@@ -8,6 +8,7 @@ import com.noxsid.nks.crmai.service.AuthenticationService;
 import com.noxsid.nks.crmai.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,8 +34,8 @@ public class MainPageController {
     }
     private final Logger logger = Logger.getLogger("Warning");
     @GetMapping("/")
-    public String getMainPage(){
-        logger.log(Level.WARNING, "Did not opened");
+    public String getMainPage(Model model){
+        model.addAttribute("activeMenu", "dashboard");
         return "index";
     }
     @GetMapping("/login")
@@ -92,6 +93,8 @@ public class MainPageController {
             cookie.setPath("/");
             cookie.setMaxAge(24*60*60);
             res.addCookie(cookie);
+            String header = "Bearer "+response.getAccessToken();
+            res.setHeader(HttpHeaders.AUTHORIZATION, header);
             return "redirect:/";
         }
         catch (Exception e){
