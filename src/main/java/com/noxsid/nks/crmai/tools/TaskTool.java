@@ -53,7 +53,7 @@ public class TaskTool {
                 else {
                     task.setDeadline(LocalDate.now().plusYears(1));
                 }
-                if(project !=null){
+                if(project !=null && !project.equals("null") && !project.equals("Null") && !project.isEmpty()){
                     Project found_project = projectService.findByTitle(title);
                     if(found_project == null){
                         throw new NoSuchElementException("Could not find the project by " + project + " name.");
@@ -65,7 +65,7 @@ public class TaskTool {
                 task.set_AI(true);
                 task.setStatus(Status.TO_DO);
                 taskService.saveTask(task);
-                return task.toString();
+                return task.toString() + " task was created";
             }
             else{
                 return "Given username is not found!, please check whether you typed right username";

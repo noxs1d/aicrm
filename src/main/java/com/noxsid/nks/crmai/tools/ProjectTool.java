@@ -31,7 +31,7 @@ public class ProjectTool {
     public String projectCreation(
             @ToolParam(description = "Take the title of the project from prompt") String title,
             @ToolParam(description = "Generate description by given prompt and generate recommendation for project") String description,
-            @ToolParam(description = "Take deadline by given prompt, if deadline not given then unnecessary", required = false) LocalDate deadline
+            @ToolParam(description = "Take deadline(yyyy-MM-dd) by given prompt, if deadline not given then unnecessary", required = false) LocalDate deadline
             )
     {
         logger.info("Project Creation tool called!");
@@ -42,11 +42,13 @@ public class ProjectTool {
             if(deadline!=null){
                 project.setDeadline(deadline);
             }
+            else{
+                project.setDeadline(LocalDate.now().plusYears(1));
+            }
             projectService.saveProject(project);
-            return project.toString();
+            return project.toString() + ". Project was created";
         }catch (Exception e){
             logger.warn("Project tool exc: " + e);
-            e.printStackTrace();
             return e.toString();
         }
     }
