@@ -27,12 +27,17 @@ public class TaskController {
 
     @GetMapping
     public String getTaskPage(Model model, HttpServletRequest request){
-
+        User user = userService.getUser(request);
         model.addAttribute("activeMenu", "tasks");
         model.addAttribute("task", new Task());
         model.addAttribute("statuses", Status.values());
         model.addAttribute("projects", projectService.getAllProjects());
-        model.addAttribute("tasks", taskService.getUsersTasks(userService.getUser(request)));
+        model.addAttribute("done", taskService.getTasksByStatus(user, Status.DONE));
+        model.addAttribute("todo", taskService.getTasksByStatus(user, Status.TO_DO));
+        model.addAttribute("progress", taskService.getTasksByStatus(user, Status.IN_PROGRESS));
+        model.addAttribute("pending", taskService.getTasksByStatus(user, Status.PENDING));
+
+
         return "task";
     }
 

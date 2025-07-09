@@ -3,53 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+    <link rel="stylesheet" th:href="@{/css/default.css}">
     <title>Projects</title>
 </head>
 <body>
 
 <!-- Include the sidebar fragment -->
 <div th:replace="~{fragments/sidebar :: sidebar}"></div>
-<div>
+<div class="title-block">
     <h2>Projects</h2>
 </div>
+<div class="outer-container">
+    <!-- Правильное условие с th:if -->
+    <div class ="add-project" th:if="${position == 'MANAGER' or position == 'CEO'}">
+        <!-- Указание th:object требует ${} -->
+        <form action="/project" th:object="${project}" method="post">
+            <label>Title
+                <!-- th:field уже автоматически проставит name, не обязательно указывать name вручную -->
+                <input type="text" th:field="*{title}">
+            </label>
 
-<!-- Правильное условие с th:if -->
-<div th:if="${position == 'MANAGER' or position == 'CEO'}">
-    <!-- Указание th:object требует ${} -->
-    <form action="/project" th:object="${project}" method="post">
-        <label>Title
-            <!-- th:field уже автоматически проставит name, не обязательно указывать name вручную -->
-            <input type="text" th:field="*{title}">
-        </label>
+            <label>Description
+                <textarea th:field="*{description}"></textarea>
+            </label>
 
-        <label>Description
-            <textarea th:field="*{description}"></textarea>
-        </label>
+            <label>Status
+                <select th:field="*{status}">
+                    <option value="" disabled selected>-- Choose --</option>
+                    <option th:each="stat : ${statuses}" th:value="${stat}" th:text="${stat}"></option>
+                </select>
+            </label>
 
-        <label>Status
-            <select th:field="*{status}">
-                <option value="" disabled selected>-- Choose --</option>
-                <option th:each="stat : ${statuses}" th:value="${stat}" th:text="${stat}"></option>
-            </select>
-        </label>
+            <label>Deadline
+                <input type="date" th:field="*{deadline}">
+            </label>
 
-        <label>Deadline
-            <input type="date" th:field="*{deadline}">
-        </label>
-
-        <button type="submit">Create Project</button>
-    </form>
-</div>
-
-<div class="outer">
-    <div th:each="project : ${projects}" class="project-container">
-        <h3 th:text="${project.title}"></h3>
-        <p th:text="${project.description}"></p>
-        <span th:text="${project.status}"></span>
-<!--        <span th:if="${project.deadline != null}"-->
-<!--              th:text="${#dates.format(project.deadline, 'yyyy-MM-dd')}"></span>-->
-<!--        <span th:if="${project.deadline == null}">No deadline</span>-->
+            <button type="submit">Create Project</button>
+        </form>
     </div>
+
+
+        <div th:each="project : ${projects}" class="project-container">
+            <h3 th:text="${project.title}"></h3>
+            <p th:text="${project.description}"></p>
+            <span th:text="${project.status}"></span>
+    <!--        <span th:if="${project.deadline != null}"-->
+    <!--              th:text="${#dates.format(project.deadline, 'yyyy-MM-dd')}"></span>-->
+    <!--        <span th:if="${project.deadline == null}">No deadline</span>-->
+        </div>
 </div>
 </body>
 </html>

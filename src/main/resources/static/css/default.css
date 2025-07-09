@@ -1,0 +1,36 @@
+body{
+    display: block;
+}
+.title-block{
+    min-width: 100%;
+    text-align: center;
+}
+.add-project label{
+    display: block;
+}
+.outer-container, .outer_container{
+    display: flex;
+    margin-left: 250px;
+    height: auto;
+    flex-wrap: wrap;
+}
+.add-project, .project-container{
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid;
+}
+
+.outer_container .container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.todo_tasks, .doing_tasks, .done_tasks, .pending_tasks{
+    width: 25%;
+}
+
+.task-container{
+    padding: 10px;
+    border: 1px solid;
+    margin: 10px;
+}

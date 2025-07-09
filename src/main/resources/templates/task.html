@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+    <link rel="stylesheet" th:href="@{/css/default.css}">
     <title>Tasks</title>
 </head>
 <body>
 
 <!-- Include the sidebar fragment -->
 <div th:replace="~{fragments/sidebar :: sidebar}"></div>
-<div>
+<div class="title-block">
     <H2>Tasks</H2>
 </div>
 <div class="outer_container">
@@ -41,13 +42,13 @@
                     <input type="date" th:field="*{deadline}">
                 </label>
 
-                <button type="submit">Create Project</button>
+                <button type="submit">Create Task</button>
             </form>
         </div>
         <div class="todo_tasks">
             <H2>TO DO</H2>
-            <div th:each="task : ${tasks}" class="task-container">
-                <div class="todo" th:if="${task.status.name() == 'TO_DO'}">
+            <div th:each="task : ${todo}" class="task-container">
+                <div class="todo">
                     <h3 th:text="${task.title}"></h3>
                     <span th:if="${task.project != null}" th:text="${task.project.title}"></span>
                     <p th:text="${task.description}"></p>
@@ -56,8 +57,8 @@
         </div>
         <div class="doing_tasks">
             <H2>IN PROGRESS</H2>
-            <div th:each="task : ${tasks}" class="task-container">
-                <div class="doing_container" th:if="${task.status.name() == 'IN_PROGRESS'}">
+            <div th:each="task : ${progress}" class="task-container">
+                <div class="doing_container">
                     <h3 th:text="${task.title}"></h3>
                     <span th:if="${task.project != null}" th:text="${task.project.title}"></span>
                     <p th:text="${task.description}"></p>
@@ -66,8 +67,8 @@
         </div>
         <div class="pending_tasks">
             <h2>PENDING</h2>
-            <div th:each="task : ${tasks}" class="task-container">
-                <div class="pending_container" th:if="${task.status.name() == 'PENDING'}">
+            <div th:each="task : ${pending}" class="task-container">
+                <div class="pending_container">
                     <h3 th:text="${task.title}"></h3>
                     <span th:if="${task.project != null}" th:text="${task.project.title}"></span>
                     <p th:text="${task.description}"></p>
@@ -76,8 +77,8 @@
         </div>
         <div class="done_tasks">
             <h2>Done</h2>
-            <div th:each="task : ${tasks}" class="task-container">
-                <div class="done_container" th:if="${task.status.name() == 'DONE'}">
+            <div th:each="task : ${done}" class="task-container">
+                <div class="done_container">
                     <h3 th:text="${task.title}"></h3>
                     <span th:if="${task.project != null}" th:text="${task.project.name}"></span>
                     <p th:text="${task.description}"></p>

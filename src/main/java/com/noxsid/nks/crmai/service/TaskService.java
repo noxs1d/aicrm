@@ -1,5 +1,6 @@
 package com.noxsid.nks.crmai.service;
 
+import com.noxsid.nks.crmai.data.Status;
 import com.noxsid.nks.crmai.data.Task;
 import com.noxsid.nks.crmai.data.User;
 import com.noxsid.nks.crmai.repository.TaskRepository;
@@ -17,6 +18,9 @@ public class TaskService {
         return taskRepository.findAllByUser(user.getId());
     }
 
+    public List<Task> getTasksByStatus(User user, Status status){
+        return taskRepository.findByUserStatus(user.getId(),status);
+    }
     public void saveTask(Task task){
         taskRepository.save(task);
     }
