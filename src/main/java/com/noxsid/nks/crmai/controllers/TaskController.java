@@ -46,6 +46,6 @@ public class TaskController {
         task.setUser(userService.getUser(request));
         task.setAssigned_date(LocalDateTime.now());
         taskService.saveTask(task);
-        return "/task";
+        return "redirect:/task";
     }
 }

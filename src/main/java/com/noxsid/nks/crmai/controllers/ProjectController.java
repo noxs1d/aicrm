@@ -52,6 +52,6 @@ public class ProjectController {
             throw new RuntimeException();
         }
         projectService.saveProject(project);
-        return "project";
+        return "redirect:/project";
     }
 }
